@@ -24,7 +24,7 @@ const SearchResults = (props) => {
           {props.results.map((booking) => {
             const start = moment(booking.checkInDate);
             const end = moment(booking.checkOutDate);
-            const nights = start.diff(end, "days");
+            const nights = end.diff(start, "days");
 
             return (
               <tr>
@@ -36,7 +36,7 @@ const SearchResults = (props) => {
                 <td>{booking.roomId}</td>
                 <td>{booking.checkInDate}</td>
                 <td>{booking.checkOutDate}</td>
-                <td>{1}</td>
+                <td>{nights}</td>
               </tr>
             );
           })}
