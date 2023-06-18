@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import moment from "moment";
 
 const SearchResults = (props) => {
   return (
@@ -15,11 +16,16 @@ const SearchResults = (props) => {
             <th>Room ID</th>
             <th>Check In Date</th>
             <th>Check Out Date</th>
+            <th>Number of Nights</th>
           </tr>
         </thead>
 
         <tbody>
           {props.results.map((booking) => {
+            const start = moment(booking.checkInDate);
+            const end = moment(booking.checkOutDate);
+            const nights = start.diff(end, "days");
+
             return (
               <tr>
                 <td>{booking.id}</td>
@@ -30,6 +36,7 @@ const SearchResults = (props) => {
                 <td>{booking.roomId}</td>
                 <td>{booking.checkInDate}</td>
                 <td>{booking.checkOutDate}</td>
+                <td>{1}</td>
               </tr>
             );
           })}
